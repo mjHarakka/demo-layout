@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from './Button'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const HeroContainer = styled.section`
   display: flex;
@@ -92,13 +93,12 @@ const ButtonWrapper = styled.div`
 `
 
 export const Hero = () => {
+  const { t } = useLanguage()
+
   return (
     <HeroContainer>
-      <HeroTitle>Transform Your Business Today</HeroTitle>
-      <HeroSubtitle>
-        Premium services that deliver real results. Experience the Cool Rugelach
-        difference and take your business to the next level.
-      </HeroSubtitle>
+      <HeroTitle>{t.hero.title}</HeroTitle>
+      <HeroSubtitle>{t.hero.subtitle}</HeroSubtitle>
       <HeroImageContainer>
         <HeroImage
           viewBox='0 0 800 450'
@@ -185,9 +185,7 @@ export const Hero = () => {
         </HeroImage>
       </HeroImageContainer>
       <ButtonWrapper>
-        <Button onClick={() => console.log('CTA clicked')}>
-          Start Your Journey
-        </Button>
+        <Button onClick={() => console.log('CTA clicked')}>{t.hero.cta}</Button>
       </ButtonWrapper>
     </HeroContainer>
   )

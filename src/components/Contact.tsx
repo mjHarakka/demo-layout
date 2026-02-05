@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from './Button'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ContactContainer = styled.section`
   padding: ${({ theme }) => theme.spacing.xxxl}
@@ -126,6 +127,8 @@ const TextArea = styled.textarea`
 `
 
 export const Contact = () => {
+  const { t } = useLanguage()
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Form submitted')
@@ -134,61 +137,69 @@ export const Contact = () => {
   return (
     <ContactContainer id='contact'>
       <ContentWrapper>
-        <SectionTitle>Get In Touch</SectionTitle>
-        <SectionSubtitle>
-          Have a question or ready to start your project? We'd love to hear from
-          you. Reach out and let's make something amazing together.
-        </SectionSubtitle>
+        <SectionTitle>{t.contact.title}</SectionTitle>
+        <SectionSubtitle>{t.contact.subtitle}</SectionSubtitle>
         <ContactGrid>
           <ContactInfo>
             <ContactItem>
-              <ContactLabel>Email</ContactLabel>
-              <ContactValue>hello@coolrugelach.com</ContactValue>
+              <ContactLabel>{t.contact.info.email}</ContactLabel>
+              <ContactValue>{t.contact.contactEmail}</ContactValue>
             </ContactItem>
             <ContactItem>
-              <ContactLabel>Phone</ContactLabel>
-              <ContactValue>+1 (555) 123-4567</ContactValue>
+              <ContactLabel>{t.contact.info.phone}</ContactLabel>
+              <ContactValue>{t.contact.contactPhone}</ContactValue>
             </ContactItem>
             <ContactItem>
-              <ContactLabel>Address</ContactLabel>
+              <ContactLabel>{t.contact.info.address}</ContactLabel>
               <ContactValue>
-                123 Innovation Street
-                <br />
-                San Francisco, CA 94102
+                {t.contact.info.addressValue.split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
               </ContactValue>
             </ContactItem>
             <ContactItem>
-              <ContactLabel>Business Hours</ContactLabel>
+              <ContactLabel>{t.contact.info.hours}</ContactLabel>
               <ContactValue>
-                Monday - Friday: 9:00 AM - 6:00 PM EST
-                <br />
-                Weekend: By Appointment
+                {t.contact.info.hoursValue.split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
               </ContactValue>
             </ContactItem>
           </ContactInfo>
           <ContactForm onSubmit={handleSubmit}>
             <FormGroup>
-              <Label htmlFor='name'>Name *</Label>
-              <Input type='text' id='name' required placeholder='Your name' />
+              <Label htmlFor='name'>{t.contact.form.name} *</Label>
+              <Input
+                type='text'
+                id='name'
+                required
+                placeholder={t.contact.form.namePlaceholder}
+              />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='email'>Email *</Label>
+              <Label htmlFor='email'>{t.contact.form.email} *</Label>
               <Input
                 type='email'
                 id='email'
                 required
-                placeholder='your@email.com'
+                placeholder={t.contact.form.emailPlaceholder}
               />
             </FormGroup>
             <FormGroup>
-              <Label htmlFor='message'>Message *</Label>
+              <Label htmlFor='message'>{t.contact.form.message} *</Label>
               <TextArea
                 id='message'
                 required
-                placeholder='Tell us about your project...'
+                placeholder={t.contact.form.messagePlaceholder}
               />
             </FormGroup>
-            <Button type='submit'>Send Message</Button>
+            <Button type='submit'>{t.contact.form.submit}</Button>
           </ContactForm>
         </ContactGrid>
       </ContentWrapper>

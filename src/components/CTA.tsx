@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from './Button'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const CTAContainer = styled.section`
   padding: ${({ theme }) => theme.spacing.xxxl}
@@ -76,20 +77,19 @@ const SecondaryButton = styled(Button)`
 `
 
 export const CTA = () => {
+  const { t } = useLanguage()
+
   return (
     <CTAContainer>
       <CTAContent>
-        <CTATitle>Ready to Get Started?</CTATitle>
-        <CTADescription>
-          Join hundreds of satisfied clients who've transformed their business
-          with Cool Rugelach. Let's create something amazing together.
-        </CTADescription>
+        <CTATitle>{t.cta.title}</CTATitle>
+        <CTADescription>{t.cta.description}</CTADescription>
         <CTAButtonWrapper>
           <Button onClick={() => console.log('Get Started')}>
-            Get Started Now
+            {t.cta.primaryButton}
           </Button>
           <SecondaryButton onClick={() => console.log('Learn More')}>
-            Learn More
+            {t.cta.secondaryButton}
           </SecondaryButton>
         </CTAButtonWrapper>
       </CTAContent>
