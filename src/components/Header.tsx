@@ -4,39 +4,57 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #000;
-  background-color: #fff;
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
+  background: ${({ theme }) => theme.colors.surface};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all ${({ theme }) => theme.transitions.normal};
 `
 
 const Logo = styled.div`
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #000;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.charcoal},
+    ${({ theme }) => theme.colors.lavender}
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
 `
 
 const MenuButton = styled.button`
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
-  background: none;
-  border: 2px solid #000;
-  padding: 0.5rem;
+  gap: ${({ theme }) => theme.spacing.xs};
+  background: transparent;
+  border: none;
+  padding: ${({ theme }) => theme.spacing.sm};
   cursor: pointer;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   justify-content: center;
   align-items: center;
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: ${({ theme }) => theme.colors.lightGrey};
+    transform: scale(1.05);
   }
 
   span {
     display: block;
     width: 100%;
-    height: 3px;
-    background-color: #000;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.charcoal};
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    transition: all ${({ theme }) => theme.transitions.fast};
   }
 `
 

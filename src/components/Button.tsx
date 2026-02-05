@@ -1,23 +1,61 @@
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
-  padding: 0.875rem 2rem;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
   font-size: 1rem;
   font-weight: 600;
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #000;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.lavender},
+    ${({ theme }) => theme.colors.accentHover}
+  );
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all ${({ theme }) => theme.transitions.normal};
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      ${({ theme }) => theme.colors.charcoal},
+      ${({ theme }) => theme.colors.slate}
+    );
+    opacity: 0;
+    transition: opacity ${({ theme }) => theme.transitions.normal};
+  }
 
   &:hover {
-    background-color: #fff;
-    color: #000;
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
   }
 `
 
@@ -36,7 +74,7 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <StyledButton type={type} onClick={onClick} disabled={disabled}>
-      {children}
+      <span>{children}</span>
     </StyledButton>
   )
 }
