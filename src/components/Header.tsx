@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { useState } from 'react'
+import { Menu } from './Menu'
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -28,7 +30,7 @@ const Logo = styled.div`
   letter-spacing: -0.02em;
 `
 
-const MenuButton = styled.button`
+const MenuButton = styled.button<{ $isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.xs};
@@ -55,18 +57,41 @@ const MenuButton = styled.button`
     background-color: ${({ theme }) => theme.colors.charcoal};
     border-radius: ${({ theme }) => theme.borderRadius.full};
     transition: all ${({ theme }) => theme.transitions.fast};
+
+    &:nth-child(1) {
+      transform: ${({ $isOpen }) =>
+        $isOpen ? 'rotate(45deg) translateY(8px)' : 'none'};
+    }
+
+    &:nth-child(2) {
+      opacity: ${({ $isOpen }) => ($isOpen ? 0 : 1)};
+    }
+
+    &:nth-child(3) {
+      transform: ${({ $isOpen }) =>
+        $isOpen ? 'rotate(-45deg) translateY(-8px)' : 'none'};
+    }
   }
 `
 
 export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
-    <HeaderContainer>
-      <Logo>Cool Rugelach</Logo>
-      <MenuButton aria-label='Menu'>
-        <span />
-        <span />
-        <span />
-      </MenuButton>
-    </HeaderContainer>
+    <>
+      <HeaderContainer>
+        <Logo>Cool Rugelach</Logo>
+        <MenuButton
+          $isOpen={isMenuOpen}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label='Menu'
+        >
+          <span />
+          <span />
+          <span />
+        </MenuButton>
+      </HeaderContainer>
+      <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+    </>
   )
 }
