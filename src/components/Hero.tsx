@@ -77,31 +77,14 @@ const HeroImageContainer = styled.div`
   &:hover {
     transform: translateY(-5px) scale(1.01);
   }
+`
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(159, 168, 218, 0.1),
-      transparent
-    );
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    }
-    100% {
-      transform: translateX(100%) translateY(100%) rotate(45deg);
-    }
-  }
+const HeroImage = styled.svg`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `
 
 const ImagePlaceholder = styled.span`
@@ -122,13 +105,100 @@ const ButtonWrapper = styled.div`
 export const Hero = () => {
   return (
     <HeroContainer>
-      <HeroTitle>Hero header</HeroTitle>
-      <HeroSubtitle>Sub headline</HeroSubtitle>
+      <HeroTitle>Transform Your Business Today</HeroTitle>
+      <HeroSubtitle>
+        Premium services that deliver real results. Experience the Cool Rugelach
+        difference and take your business to the next level.
+      </HeroSubtitle>
       <HeroImageContainer>
-        <ImagePlaceholder>Hero image</ImagePlaceholder>
+        <HeroImage
+          viewBox='0 0 800 450'
+          xmlns='http://www.w3.org/2000/svg'
+          preserveAspectRatio='xMidYMid slice'
+        >
+          <defs>
+            <linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'>
+              <stop offset='0%' stopColor='#9FA8DA' stopOpacity={0.8} />
+              <stop offset='50%' stopColor='#7986CB' stopOpacity={0.6} />
+              <stop offset='100%' stopColor='#546E7A' stopOpacity={0.8} />
+            </linearGradient>
+            <linearGradient id='grad2' x1='100%' y1='0%' x2='0%' y2='100%'>
+              <stop offset='0%' stopColor='#FF6B6B' stopOpacity={0.3} />
+              <stop offset='100%' stopColor='#9FA8DA' stopOpacity={0.3} />
+            </linearGradient>
+          </defs>
+
+          <rect width='800' height='450' fill='url(#grad1)' />
+
+          <circle cx='650' cy='100' r='120' fill='url(#grad2)' opacity='0.5'>
+            <animate
+              attributeName='r'
+              values='120;140;120'
+              dur='4s'
+              repeatCount='indefinite'
+            />
+          </circle>
+
+          <circle cx='150' cy='350' r='100' fill='#F8F8FF' opacity='0.2'>
+            <animate
+              attributeName='cy'
+              values='350;330;350'
+              dur='3s'
+              repeatCount='indefinite'
+            />
+          </circle>
+
+          <rect
+            x='300'
+            y='150'
+            width='200'
+            height='200'
+            fill='#2C3E50'
+            opacity='0.15'
+            transform='rotate(45 400 250)'
+          >
+            <animateTransform
+              attributeName='transform'
+              type='rotate'
+              values='45 400 250;55 400 250;45 400 250'
+              dur='6s'
+              repeatCount='indefinite'
+            />
+          </rect>
+
+          <polygon
+            points='700,300 750,400 650,400'
+            fill='#FF6B6B'
+            opacity='0.3'
+          >
+            <animate
+              attributeName='opacity'
+              values='0.3;0.5;0.3'
+              dur='2s'
+              repeatCount='indefinite'
+            />
+          </polygon>
+
+          <path
+            d='M 0 225 Q 200 175 400 225 T 800 225'
+            stroke='#F8F8FF'
+            strokeWidth='3'
+            fill='none'
+            opacity='0.4'
+          />
+          <path
+            d='M 0 250 Q 200 200 400 250 T 800 250'
+            stroke='#F8F8FF'
+            strokeWidth='2'
+            fill='none'
+            opacity='0.3'
+          />
+        </HeroImage>
       </HeroImageContainer>
       <ButtonWrapper>
-        <Button onClick={() => console.log('CTA clicked')}>CTA button</Button>
+        <Button onClick={() => console.log('CTA clicked')}>
+          Start Your Journey
+        </Button>
       </ButtonWrapper>
     </HeroContainer>
   )

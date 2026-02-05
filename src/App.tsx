@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from 'styled-components'
-import { Header, Hero, Footer } from './components'
+import { Header, Hero, Footer, Features, CTA } from './components'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { theme } from './styles/theme'
 
@@ -28,6 +28,8 @@ function App() {
         <Header />
         <MainContent>
           <Hero />
+          <Features />
+          <CTA />
         </MainContent>
         <Footer />
       </AppContainer>
