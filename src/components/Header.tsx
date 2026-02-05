@@ -61,7 +61,7 @@ const MenuButton = styled.button`
 export const Header = () => {
   return (
     <HeaderContainer>
-      <Logo>Logo</Logo>
+      <Logo>Cool Rugelach</Logo>
       <MenuButton aria-label='Menu'>
         <span />
         <span />

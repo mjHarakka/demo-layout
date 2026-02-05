@@ -39,7 +39,8 @@ export const Footer = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        © {new Date().getFullYear()} Your Company. All rights reserved.
+        © {new Date().getFullYear()} Cool Rugelach. Crafted with passion. All
+        rights reserved.
       </FooterContent>
     </FooterContainer>
   )
