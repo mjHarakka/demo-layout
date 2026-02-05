@@ -11,6 +11,7 @@ import {
 } from './components'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { theme } from './styles/theme'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -32,21 +33,23 @@ const MainContent = styled.main`
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <AppContainer>
-        <Header />
-        <MainContent>
-          <div id='home'>
-            <Hero />
-          </div>
-          <Services />
-          <About />
-          <Features />
-          <CTA />
-          <Contact />
-        </MainContent>
-        <Footer />
-      </AppContainer>
+      <LanguageProvider>
+        <GlobalStyles />
+        <AppContainer>
+          <Header />
+          <MainContent>
+            <div id='home'>
+              <Hero />
+            </div>
+            <Services />
+            <About />
+            <Features />
+            <CTA />
+            <Contact />
+          </MainContent>
+          <Footer />
+        </AppContainer>
+      </LanguageProvider>
     </ThemeProvider>
   )
 }

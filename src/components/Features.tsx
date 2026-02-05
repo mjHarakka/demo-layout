@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const FeaturesContainer = styled.section`
   padding: ${({ theme }) => theme.spacing.xxxl}
@@ -78,41 +79,16 @@ const FeatureDescription = styled.p`
   line-height: 1.6;
 `
 
-interface Feature {
-  icon: string
-  title: string
-  description: string
-}
-
-const features: Feature[] = [
-  {
-    icon: '🎯',
-    title: 'Precision Crafted',
-    description:
-      'Every detail matters. Our services are meticulously designed to exceed your expectations and deliver exceptional results.',
-  },
-  {
-    icon: '⚡',
-    title: 'Lightning Fast',
-    description:
-      'Time is precious. We deliver rapid turnaround without compromising quality, keeping your projects on track.',
-  },
-  {
-    icon: '🛡️',
-    title: 'Reliable & Secure',
-    description:
-      'Your trust is our priority. We maintain the highest standards of reliability and security in everything we do.',
-  },
-]
-
 export const Features = () => {
+  const { t } = useLanguage()
+
   return (
     <FeaturesContainer>
-      <SectionTitle>Why Choose Cool Rugelach?</SectionTitle>
+      <SectionTitle>{t.features.title}</SectionTitle>
       <FeaturesGrid>
-        {features.map((feature, index) => (
+        {t.features.items.map((feature, index) => (
           <FeatureCard key={index}>
-            <FeatureIcon>{feature.icon}</FeatureIcon>
+            <FeatureIcon>{['🎯', '⚡', '🛡️'][index]}</FeatureIcon>
             <FeatureTitle>{feature.title}</FeatureTitle>
             <FeatureDescription>{feature.description}</FeatureDescription>
           </FeatureCard>

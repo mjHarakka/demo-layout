@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const FooterContainer = styled.footer`
   padding: ${({ theme }) => theme.spacing.xxl}
@@ -36,11 +37,12 @@ const FooterContent = styled.div`
 `
 
 export const Footer = () => {
+  const { t } = useLanguage()
+
   return (
     <FooterContainer>
       <FooterContent>
-        © {new Date().getFullYear()} Cool Rugelach. Crafted with passion. All
-        rights reserved.
+        © {new Date().getFullYear()} {t.footer.copyright}
       </FooterContent>
     </FooterContainer>
   )

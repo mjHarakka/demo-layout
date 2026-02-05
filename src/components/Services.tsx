@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const ServicesContainer = styled.section`
   padding: ${({ theme }) => theme.spacing.xxxl}
@@ -86,69 +87,17 @@ const ServiceListItem = styled.li`
   }
 `
 
-const services = [
-  {
-    icon: '💼',
-    title: 'Business Strategy',
-    description:
-      'Comprehensive strategic planning to help your business reach new heights.',
-    features: [
-      'Market Analysis',
-      'Competitive Research',
-      'Growth Planning',
-      'KPI Development',
-    ],
-  },
-  {
-    icon: '🎨',
-    title: 'Design Services',
-    description:
-      'Beautiful, modern designs that capture attention and drive engagement.',
-    features: [
-      'Brand Identity',
-      'UI/UX Design',
-      'Graphic Design',
-      'Prototyping',
-    ],
-  },
-  {
-    icon: '💻',
-    title: 'Development',
-    description:
-      'Cutting-edge development solutions built with the latest technologies.',
-    features: [
-      'Web Applications',
-      'Mobile Apps',
-      'API Development',
-      'Cloud Integration',
-    ],
-  },
-  {
-    icon: '📈',
-    title: 'Marketing',
-    description:
-      'Data-driven marketing strategies that deliver measurable results.',
-    features: [
-      'SEO Optimization',
-      'Content Marketing',
-      'Social Media',
-      'Email Campaigns',
-    ],
-  },
-]
-
 export const Services = () => {
+  const { t } = useLanguage()
+
   return (
     <ServicesContainer id='services'>
-      <SectionTitle>Our Services</SectionTitle>
-      <SectionSubtitle>
-        Comprehensive solutions tailored to your business needs. We offer a full
-        range of services to help you succeed.
-      </SectionSubtitle>
+      <SectionTitle>{t.services.title}</SectionTitle>
+      <SectionSubtitle>{t.services.subtitle}</SectionSubtitle>
       <ServicesGrid>
-        {services.map((service, index) => (
+        {t.services.items.map((service, index) => (
           <ServiceCard key={index}>
-            <ServiceIcon>{service.icon}</ServiceIcon>
+            <ServiceIcon>{['💼', '🎨', '💻', '📈'][index]}</ServiceIcon>
             <ServiceTitle>{service.title}</ServiceTitle>
             <ServiceDescription>{service.description}</ServiceDescription>
             <ServiceList>

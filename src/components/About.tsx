@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const AboutContainer = styled.section`
   padding: ${({ theme }) => theme.spacing.xxxl}
@@ -95,39 +96,31 @@ const ImagePlaceholder = styled.div`
 `
 
 export const About = () => {
+  const { t } = useLanguage()
+
   return (
     <AboutContainer id='about'>
       <ContentWrapper>
         <TextContent>
-          <SectionTitle>About Cool Rugelach</SectionTitle>
-          <Paragraph>
-            Founded in 2020, Cool Rugelach has been at the forefront of
-            delivering exceptional services to businesses of all sizes. Our
-            mission is to empower companies with innovative solutions that drive
-            real, measurable results.
-          </Paragraph>
-          <Paragraph>
-            With a team of experienced professionals and a passion for
-            excellence, we've helped hundreds of clients transform their
-            businesses and achieve their goals. We believe in building lasting
-            partnerships and delivering value that goes beyond expectations.
-          </Paragraph>
+          <SectionTitle>{t.about.title}</SectionTitle>
+          <Paragraph>{t.about.paragraph1}</Paragraph>
+          <Paragraph>{t.about.paragraph2}</Paragraph>
           <StatsGrid>
             <StatCard>
               <StatNumber>500+</StatNumber>
-              <StatLabel>Happy Clients</StatLabel>
+              <StatLabel>{t.about.stats.clients}</StatLabel>
             </StatCard>
             <StatCard>
               <StatNumber>98%</StatNumber>
-              <StatLabel>Satisfaction Rate</StatLabel>
+              <StatLabel>{t.about.stats.satisfaction}</StatLabel>
             </StatCard>
             <StatCard>
               <StatNumber>1000+</StatNumber>
-              <StatLabel>Projects Completed</StatLabel>
+              <StatLabel>{t.about.stats.projects}</StatLabel>
             </StatCard>
             <StatCard>
               <StatNumber>24/7</StatNumber>
-              <StatLabel>Support Available</StatLabel>
+              <StatLabel>{t.about.stats.support}</StatLabel>
             </StatCard>
           </StatsGrid>
         </TextContent>

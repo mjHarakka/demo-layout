@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import { Menu } from './Menu'
+import { LanguageSelector } from './LanguageSelector'
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -81,15 +82,18 @@ export const Header = () => {
     <>
       <HeaderContainer>
         <Logo>Cool Rugelach</Logo>
-        <MenuButton
-          $isOpen={isMenuOpen}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label='Menu'
-        >
-          <span />
-          <span />
-          <span />
-        </MenuButton>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <LanguageSelector />
+          <MenuButton
+            $isOpen={isMenuOpen}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label='Menu'
+          >
+            <span />
+            <span />
+            <span />
+          </MenuButton>
+        </div>
       </HeaderContainer>
       <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>

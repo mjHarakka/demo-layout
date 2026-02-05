@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const MenuOverlay = styled.div<{ $isOpen: boolean }>`
   position: fixed;
@@ -131,17 +132,19 @@ interface MenuProps {
   onClose: () => void
 }
 
-const menuItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'About', href: '#about' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Contact', href: '#contact' },
-]
-
 export const Menu = ({ isOpen, onClose }: MenuProps) => {
+  const { t } = useLanguage()
+
+  const menuItems = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.services, href: '#services' },
+    { label: t.nav.about, href: '#about' },
+    { label: t.nav.portfolio, href: '#portfolio' },
+    { label: t.nav.testimonials, href: '#testimonials' },
+    { label: t.nav.pricing, href: '#pricing' },
+    { label: t.nav.contact, href: '#contact' },
+  ]
+
   const handleLinkClick = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -155,7 +158,7 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
       <MenuOverlay $isOpen={isOpen} onClick={onClose} />
       <MenuContainer $isOpen={isOpen}>
         <CloseButton onClick={onClose}>×</CloseButton>
-        <MenuTitle>Navigation</MenuTitle>
+        <MenuTitle>{t.menuTitle}</MenuTitle>
         <MenuList>
           {menuItems.map((item) => (
             <MenuItem key={item.label}>
@@ -168,13 +171,13 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
         <MenuDivider />
         <ContactInfo>
           <ContactItem>
-            <strong>Email:</strong> hello@coolrugelach.com
+            <strong>{t.contact.info.email}:</strong> {t.contact.contactEmail}
           </ContactItem>
           <ContactItem>
-            <strong>Phone:</strong> +1 (555) 123-4567
+            <strong>{t.contact.info.phone}:</strong> {t.contact.contactPhone}
           </ContactItem>
           <ContactItem>
-            <strong>Hours:</strong> Mon-Fri, 9am-6pm EST
+            <strong>{t.contact.info.hours}:</strong> {t.contact.info.hoursValue}
           </ContactItem>
         </ContactInfo>
       </MenuContainer>
