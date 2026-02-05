@@ -1,5 +1,14 @@
 import styled, { ThemeProvider } from 'styled-components'
-import { Header, Hero, Footer, Features, CTA } from './components'
+import {
+  Header,
+  Hero,
+  Footer,
+  Features,
+  CTA,
+  Services,
+  About,
+  Contact,
+} from './components'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { theme } from './styles/theme'
 
@@ -27,9 +36,14 @@ function App() {
       <AppContainer>
         <Header />
         <MainContent>
-          <Hero />
+          <div id='home'>
+            <Hero />
+          </div>
+          <Services />
+          <About />
           <Features />
           <CTA />
+          <Contact />
         </MainContent>
         <Footer />
       </AppContainer>

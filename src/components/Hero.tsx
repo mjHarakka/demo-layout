@@ -87,17 +87,6 @@ const HeroImage = styled.svg`
   left: 0;
 `
 
-const ImagePlaceholder = styled.span`
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.text.light};
-  font-weight: 500;
-  z-index: 1;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    font-size: 1rem;
-  }
-`
-
 const ButtonWrapper = styled.div`
   animation: fadeInUp 0.8s ease 0.6s backwards;
 `
